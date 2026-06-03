@@ -24,7 +24,7 @@ while True:
         )
     for event in response:
         if event.type == "response.output_text.delta":
-            print(event.delta, end=" ", flush=True)
+            print(event.delta, end="", flush=True)
     print()
 
     
