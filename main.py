@@ -19,7 +19,12 @@ while True:
     response = client.responses.create(
         model="gpt-4.1",
         input=[{"role": "user", "content": user_prompt}],
-        conversation=conversation.id
+        conversation=conversation.id,
+        stream=True
         )
+    for event in response:
+        if event.type == "response.output_text.delta":
+            print(event.delta, end=" ", flush=True)
+    print()
 
-    print(response.output[0].content[0].text)
+    
